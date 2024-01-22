@@ -1,16 +1,16 @@
 [project]
-name = "flaskr"
-version = "1.0.0"
-description = "The basic blog app built in the Flask tutorial."
+name = "acs"
+version = "1.1.0"
+description = "Aquarium Control System."
 readme = "README.rst"
 license = {text = "BSD-3-Clause"}
-maintainers = [{name = "Pallets", email = "contact@palletsprojects.com"}]
+maintainers = [{name = "ACS", email = "admin@acs.com"}]
 dependencies = [
     "flask",
 ]
 
 [project.urls]
-Documentation = "https://flask.palletsprojects.com/tutorial/"
+Documentation = "https://flask.acs.com/tutorial/"
 
 [project.optional-dependencies]
 test = ["pytest"]
@@ -20,7 +20,7 @@ requires = ["flit_core<4"]
 build-backend = "flit_core.buildapi"
 
 [tool.flit.module]
-name = "flaskr"
+name = "acs"
 
 [tool.flit.sdist]
 include = [
@@ -33,7 +33,7 @@ filterwarnings = ["error"]
 
 [tool.coverage.run]
 branch = true
-source = ["flaskr", "tests"]
+source = ["acs", "tests"]
 
 [tool.ruff]
 src = ["src"]

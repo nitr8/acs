@@ -1,10 +1,7 @@
-Flaskr
+ACS
 ======
 
-The basic blog app built in the Flask `tutorial`_.
-
-.. _tutorial: https://flask.palletsprojects.com/tutorial/
-
+The = Aquarium Control System.
 
 Install
 -------
@@ -14,8 +11,8 @@ you're reading.** You probably want the latest tagged version, but the
 default Git version is the main branch. ::
 
     # clone the repository
-    $ git clone https://github.com/pallets/flask
-    $ cd flask
+    $ git clone https://github.com/nitr8/acs
+    $ cd acs
     # checkout the correct version
     $ git tag  # shows the tagged versions
     $ git checkout latest-tag-found-above
@@ -31,24 +28,17 @@ Or on Windows cmd::
     $ py -3 -m venv .venv
     $ .venv\Scripts\activate.bat
 
-Install Flaskr::
+Install ACS::
 
     $ pip install -e .
-
-Or if you are using the main branch, install Flask from source before
-installing Flaskr::
-
-    $ pip install -e ../..
-    $ pip install -e .
-
 
 Run
 ---
 
 .. code-block:: text
 
-    $ flask --app flaskr init-db
-    $ flask --app flaskr run --debug
+    $ flask --app acs init-db
+    $ flask --app acs run --debug
 
 Open http://127.0.0.1:5000 in a browser.
 
