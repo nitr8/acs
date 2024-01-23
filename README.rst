@@ -13,10 +13,6 @@ default Git version is the main branch. ::
     # clone the repository
     $ git clone https://github.com/nitr8/acs
     $ cd acs
-    # checkout the correct version
-    $ git tag  # shows the tagged versions
-    $ git checkout latest-tag-found-above
-    $ cd examples/tutorial
 
 Create a virtualenv and activate it::
 
@@ -56,3 +52,12 @@ Run with coverage report::
     $ coverage run -m pytest
     $ coverage report
     $ coverage html  # open htmlcov/index.html in a browser
+
+
+sqlite_web
+----
+
+::
+
+    $ pip install sqlite-web      
+    $ sqlite_web instance/flaskr.sqlite

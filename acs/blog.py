@@ -6,12 +6,10 @@ from flask import render_template
 from flask import request
 from flask import url_for
 from werkzeug.exceptions import abort
-
 from .auth import login_required
 from .db import get_db
 
-bp = Blueprint("blog", __name__)
-
+bp = Blueprint("blog", __name__, url_prefix="/blog")
 
 @bp.route("/")
 def index():
@@ -23,7 +21,6 @@ def index():
         " ORDER BY created DESC"
     ).fetchall()
     return render_template("blog/index.html", posts=posts)
-
 
 def get_post(id, check_author=True):
     """Get a post and its author by id.
@@ -56,7 +53,6 @@ def get_post(id, check_author=True):
 
     return post
 
-
 @bp.route("/create", methods=("GET", "POST"))
 @login_required
 def create():
@@ -81,7 +77,6 @@ def create():
             return redirect(url_for("blog.index"))
 
     return render_template("blog/create.html")
-
 
 @bp.route("/<int:id>/update", methods=("GET", "POST"))
 @login_required
@@ -109,7 +104,6 @@ def update(id):
 
     return render_template("blog/update.html", post=post)
 
-
 @bp.route("/<int:id>/delete", methods=("POST",))
 @login_required
 def delete(id):
@@ -123,3 +117,14 @@ def delete(id):
     db.execute("DELETE FROM post WHERE id = ?", (id,))
     db.commit()
     return redirect(url_for("blog.index"))
+
+@bp.route("/posts")
+def posts():
+    """Show all the posts, most recent first."""
+    db = get_db()
+    posts = db.execute(
+        "SELECT p.id, title, body, created, author_id, username"
+        " FROM post p JOIN user u ON p.author_id = u.id"
+        " ORDER BY created DESC"
+    ).fetchall()
+    return render_template("blog/posts.html", posts=posts)

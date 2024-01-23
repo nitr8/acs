@@ -1,8 +1,6 @@
 import os
 import tempfile
-
 import pytest
-
 from acs import create_app
 from acs.db import get_db
 from acs.db import init_db
@@ -10,7 +8,6 @@ from acs.db import init_db
 # read in SQL for populating test data
 with open(os.path.join(os.path.dirname(__file__), "data.sql"), "rb") as f:
     _data_sql = f.read().decode("utf8")
-
 
 @pytest.fixture
 def app():
@@ -31,18 +28,15 @@ def app():
     os.close(db_fd)
     os.unlink(db_path)
 
-
 @pytest.fixture
 def client(app):
     """A test client for the app."""
     return app.test_client()
 
-
 @pytest.fixture
 def runner(app):
     """A test runner for the app's Click commands."""
     return app.test_cli_runner()
-
 
 class AuthActions:
     def __init__(self, client):
@@ -55,7 +49,6 @@ class AuthActions:
 
     def logout(self):
         return self._client.get("/auth/logout")
-
 
 @pytest.fixture
 def auth(client):
