@@ -1,5 +1,6 @@
 import os
 from flask import Flask
+from flask_swagger_ui import get_swaggerui_blueprint
 
 def create_app(test_config=None):
     """Create and configure an instance of the Flask application."""
@@ -35,14 +36,23 @@ def create_app(test_config=None):
 
     # apply the blueprints to the app
     from . import auth
+    from . import api
     from . import base
     from . import blog
     from . import aquarium
 
     app.register_blueprint(auth.bp)
+    app.register_blueprint(api.bp)
     app.register_blueprint(base.bp)
     app.register_blueprint(blog.bp)
     app.register_blueprint(aquarium.bp)
+
+    app.config['MQTT_BROKER_URL'] = '192.168.1.9'
+    app.config['MQTT_BROKER_PORT'] = 1883
+    app.config['MQTT_USERNAME'] = ''  # Set this item when you need to verify username and password
+    app.config['MQTT_PASSWORD'] = ''  # Set this item when you need to verify username and password
+    app.config['MQTT_KEEPALIVE'] = 5  # Set KeepAlive time in seconds
+    app.config['MQTT_TLS_ENABLED'] = False  # If your server supports TLS, set it True
 
     # make url_for('index') == url_for('blog.index')
     # in another app, you might define a separate main index here with

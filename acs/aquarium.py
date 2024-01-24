@@ -11,6 +11,16 @@ from .db import get_db
 
 bp = Blueprint("aquarium", __name__, url_prefix="/aquarium")
 
+@bp.route("/")
+def index():
+    """Log in a registered user by adding the user id to the session."""
+    return render_template("aquarium/index.html")
+
+@bp.route("/home")
+def home():
+    """Log in a registered user by adding the user id to the session."""
+    return render_template("aquarium/home.html")
+
 @bp.route("/hello2")
 def hello():
     return "Hello, World2!"
